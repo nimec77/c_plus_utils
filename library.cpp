@@ -1,16 +1,18 @@
 #include "library.h"
-#include <iostream>
 #include <cstring>
+#include <iostream>
 
 using namespace std;
 
 int main() {
+    system("chcp 65001");
+
     cout << "Test Add: " << add(40, 2) << endl;
 
     string str = "Hello! И по русски!";
-    const char * result = copy_str(str.c_str());
+    const char *result = copy_str(str.c_str());
     cout << "Test ReverseStr " << result << endl;
-    free_buf((void *) result);
+//    free_buf((void *) result);
 }
 
 void hello() {
