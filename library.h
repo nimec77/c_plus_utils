@@ -7,6 +7,7 @@ extern "C" {
 void hello();
 int add(int, int);
 char* copy_str(const char *);
+void free_buf(void *);
 #ifdef __cplusplus
 }
 #endif

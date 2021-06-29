@@ -4,13 +4,13 @@
 
 using namespace std;
 
-char str_buffer[1024];
-
 int main() {
     cout << "Test Add: " << add(40, 2) << endl;
 
     string str = "Hello! И по русски!";
-    cout << "Test ReverseStr " << copy_str(str.c_str()) << endl;
+    const char * result = copy_str(str.c_str());
+    cout << "Test ReverseStr " << result << endl;
+    free_buf((void *) result);
 }
 
 void hello() {
@@ -18,21 +18,26 @@ void hello() {
 }
 
 int add(int a, int b) {
-    cout << "Add: " << a << " + " << b << endl;
+    cout << "add: " << a << " + " << b << endl;
 
     return a + b;
 }
 
 char *copy_str(const char *c) {
-    if (strlen(c) >= sizeof str_buffer) {
-        throw invalid_argument("String size must be less than 1000");
-    }
-
     string str(c);
 
-    cout << "ReverseStr: " << str << endl;
+    cout << "copy_str: " << str << endl;
 
-    copy(str.begin(), str.end(), str_buffer);
+    const auto length = strlen(c);
+    char *buf = new char[length];
 
-    return str_buffer;
+    copy(str.begin(), str.end(), buf);
+    buf[length] = '\0';
+
+    return buf;
+}
+
+void free_buf(void *pointer) {
+    cout << "free_buff: " << pointer << endl;
+    free(pointer);
 }
